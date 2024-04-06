@@ -19,7 +19,7 @@ public class DataUtils {
         return DeveloperEntity.builder()
                 .firstName("Mike")
                 .lastName("Smith")
-                .email("john.doe@example.com")
+                .email("mike.smith@example.com")
                 .specialty("Java")
                 .status(Status.ACTIVE)
                 .build();
@@ -29,7 +29,7 @@ public class DataUtils {
         return DeveloperEntity.builder()
                 .firstName("Frank")
                 .lastName("Jones")
-                .email("john.doe@example.com")
+                .email("frank.jones@example.com")
                 .specialty("Java")
                 .status(Status.DELETED)
                 .build();
@@ -52,7 +52,7 @@ public class DataUtils {
                 .id(2)
                 .firstName("Mike")
                 .lastName("Smith")
-                .email("john.doe@example.com")
+                .email("mike.smith@example.com")
                 .specialty("Java")
                 .status(Status.ACTIVE)
                 .build();
@@ -63,7 +63,7 @@ public class DataUtils {
                 .id(3)
                 .firstName("Frank")
                 .lastName("Jones")
-                .email("john.doe@example.com")
+                .email("frank.jones@example.com")
                 .specialty("Java")
                 .status(Status.DELETED)
                 .build();

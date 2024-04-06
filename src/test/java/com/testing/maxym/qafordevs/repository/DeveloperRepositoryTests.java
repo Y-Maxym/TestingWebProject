@@ -28,11 +28,11 @@ public class DeveloperRepositoryTests {
     @Test
     @DisplayName("Test save developer functionality")
     public void givenDeveloperObject_whenSave_thenDeveloperIsCreated() {
-        // given
+        //given
         DeveloperEntity developerToSave = DataUtils.getJohnDoeTransient();
-        // when
+        //when
         DeveloperEntity savedDeveloper = developerRepository.save(developerToSave);
-        // then
+        //then
         assertThat(savedDeveloper).isNotNull();
         assertThat(savedDeveloper.getId()).isNotNull();
     }
@@ -40,16 +40,16 @@ public class DeveloperRepositoryTests {
     @Test
     @DisplayName("Test update developer functionality")
     public void givenDeveloperToUpdate_whenSave_thenEmailIsChanged() {
-        // given
+        //given
         String updatedEmail = "updated@example.com";
         DeveloperEntity developerToSave = DataUtils.getJohnDoeTransient();
         developerRepository.save(developerToSave);
-        // when
+        //when
         DeveloperEntity developerToUpdate = developerRepository.findById(developerToSave.getId())
                 .orElse(null);
         developerToUpdate.setEmail(updatedEmail);
         DeveloperEntity updatedDeveloper = developerRepository.save(developerToUpdate);
-        // then
+        //then
         assertThat(updatedDeveloper).isNotNull();
         assertThat(updatedDeveloper.getEmail()).isEqualTo(updatedEmail);
     }
@@ -57,12 +57,12 @@ public class DeveloperRepositoryTests {
     @Test
     @DisplayName("Test get developer by id functionality")
     public void givenDeveloperCreated_whenGetById_thenDeveloperIsReturned() {
-        // given
+        //given
         DeveloperEntity developerToSave = DataUtils.getJohnDoeTransient();
         developerRepository.save(developerToSave);
-        // when
+        //when
         DeveloperEntity obtainedDeveloper = developerRepository.findById(developerToSave.getId()).orElse(null);
-        // then
+        //then
         assertThat(obtainedDeveloper).isNotNull();
         assertThat(obtainedDeveloper.getEmail()).isEqualTo("john.doe@example.com");
     }
@@ -70,37 +70,37 @@ public class DeveloperRepositoryTests {
     @Test
     @DisplayName("Test developer not found functionality")
     public void givenDeveloperIsNotCreated_whenGetById_thenOptionalIsEmpty() {
-        // given
-        // when
+        //given
+        //when
         DeveloperEntity obtainedDeveloper = developerRepository.findById(1).orElse(null);
-        // then
+        //then
         assertThat(obtainedDeveloper).isNull();
     }
 
     @Test
     @DisplayName("Test get all developers functionality")
     public void givenThreeDevelopers_whenFindAll_thenAllDevelopersAreReturned() {
-        // when
+        //when
         DeveloperEntity developer1 = DataUtils.getJohnDoeTransient();
         DeveloperEntity developer2 = DataUtils.getMikeSmithTransient();
         DeveloperEntity developer3 = DataUtils.getFrankJonesTransient();
 
         developerRepository.saveAll(List.of(developer1, developer2, developer3));
-        // when
+        //when
         List<DeveloperEntity> obtainedDevelopers = developerRepository.findAll();
-        // then
+        //then
         assertThat(CollectionUtils.isEmpty(obtainedDevelopers)).isFalse();
     }
 
     @Test
     @DisplayName("Test get developer by email functionality")
     public void givenDeveloperSaved_whenGetByEmail_thenDeveloperIsReturned() {
-        // given
+        //given
         DeveloperEntity developer = DataUtils.getJohnDoeTransient();
         developerRepository.save(developer);
-        // when
+        //when
         DeveloperEntity obtainedDeveloper = developerRepository.findByEmail(developer.getEmail()).orElse(null);
-        // then
+        //then
         assertThat(obtainedDeveloper).isNotNull();
         assertThat(obtainedDeveloper.getEmail()).isEqualTo(developer.getEmail());
     }
@@ -108,15 +108,15 @@ public class DeveloperRepositoryTests {
     @Test
     @DisplayName("Test get all active developers by specialty functionality")
     public void givenThreeDevelopersAndTwoAreActive_whenFindAllActiveBySpecialty_thenReturnOnlyTwoDevelopers() {
-        // given
+        //given
         DeveloperEntity developer1 = DataUtils.getJohnDoeTransient();
         DeveloperEntity developer2 = DataUtils.getMikeSmithTransient();
         DeveloperEntity developer3 = DataUtils.getFrankJonesTransient();
 
         developerRepository.saveAll(List.of(developer1, developer2, developer3));
-        // when
+        //when
         List<DeveloperEntity> obtainedDevelopers = developerRepository.findAllActiveBySpecialty("Java");
-        // then
+        //then
         assertThat(CollectionUtils.isEmpty(obtainedDevelopers)).isFalse();
         assertThat(obtainedDevelopers.size()).isEqualTo(2);
     }
@@ -124,13 +124,13 @@ public class DeveloperRepositoryTests {
     @Test
     @DisplayName("Test delete developer by id functionality")
     public void givenDeveloperIsSaved_whenDeleteById_thenDeveloperIsRemovedFromDB() {
-        // given
+        //given
         DeveloperEntity developerToSave = DataUtils.getJohnDoeTransient();
         developerRepository.save(developerToSave);
-        // when
+        //when
         developerRepository.deleteById(developerToSave.getId());
         DeveloperEntity obtainedDeveloper = developerRepository.findById(developerToSave.getId()).orElse(null);
-        // then
+        //then
         assertThat(obtainedDeveloper).isNull();
     }
 }

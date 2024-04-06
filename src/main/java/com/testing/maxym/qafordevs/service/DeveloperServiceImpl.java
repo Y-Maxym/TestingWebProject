@@ -34,7 +34,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     public DeveloperEntity updateDeveloper(DeveloperEntity developer) {
         boolean isExists = developerRepository.existsById(developer.getId());
 
-        if (isExists) {
+        if (!isExists) {
             throw new DeveloperNotFoundException("Developer not found");
         }
         return developerRepository.save(developer);
