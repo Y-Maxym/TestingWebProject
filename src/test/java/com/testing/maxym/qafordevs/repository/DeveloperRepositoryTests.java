@@ -99,7 +99,7 @@ public class DeveloperRepositoryTests {
         DeveloperEntity developer = DataUtils.getJohnDoeTransient();
         developerRepository.save(developer);
         // when
-        DeveloperEntity obtainedDeveloper = developerRepository.findByEmail(developer.getEmail());
+        DeveloperEntity obtainedDeveloper = developerRepository.findByEmail(developer.getEmail()).orElse(null);
         // then
         assertThat(obtainedDeveloper).isNotNull();
         assertThat(obtainedDeveloper.getEmail()).isEqualTo(developer.getEmail());
